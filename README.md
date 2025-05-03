@@ -2,4 +2,4 @@
 
 AIB Model Development 
 
-See [summary](summary.pdf)
+See [summary.pdf](summary.pdf)
