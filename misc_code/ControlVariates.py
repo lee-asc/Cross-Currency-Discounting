@@ -1,15 +1,8 @@
-# --- TUTORIAL 9              -------------------------------------------------
-#       CONTROL VARIATES fOR MONTE CARLO                   
-# .....................     
-
-
-# --- Define Library          -------------------------------------------------
 
 import math as m
 import numpy as np
 import matplotlib.pyplot as plt
 
-# --- Define Input Data       -------------------------------------------------
 S	= 60
 K	= 65
 r	= 0.08
@@ -19,20 +12,15 @@ sigma	= 0.3
 n = 50
 nr = 1000
 
-# --- Calculation Other Values   ----------------------------------------------
 
 nu = r - 0.5 * sigma**2
 dt = T / n
 
-# --- Define Result Matrix    -------------------------------------------------
 FinPayOff = np.zeros(( nr, 1))
 S_val = np.zeros((nr, n+1))
 rand = np.random.randn(nr, n)
 ControlVars = np.zeros(( nr, 1))
 
-
-    
-    # Process the Monte Carlo Method ----------
     
 S_val[:,0] = S
 for i in range(nr):
@@ -41,7 +29,6 @@ for i in range(nr):
             
 FinPayOff = np.exp( -r * T ) * np.maximum(np.mean(S_val[:,1:], 1)- K, 0)
 
-    # Control Variates -----
     
 StockSum = np.sum(S_val,1)
 ExpSum = S * ( 1 - np.exp( (n+1) * r * dt )) / ( 1 - np.exp( r * dt ))
@@ -57,7 +44,6 @@ std = np.std(ControlVars)
 mean_MC = FinPayOff.mean()
 std_MC = np.std(FinPayOff)
     
-    # Plot ----
 plt.figure()
 for i in range(nr):
     plt.plot(S_val[i,:])
