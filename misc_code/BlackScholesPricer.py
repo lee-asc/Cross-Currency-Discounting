@@ -1,16 +1,9 @@
-# --- TUTORIAL 4 -------------------------------------------------
-#       BLACK SCHOLES MERTON MODEL                         
-#------------------------------------------------------------------   
-
-
-# --- Define Libraries          -----------------------------------------------
 
 import math as m
 from scipy.stats import norm
 
-# --- Define Input Data       -------------------------------------------------
 
-Call_or_Put = "Ada"
+Call_or_Put = "Call"
 
 S	= 37.0
 K	= 39
@@ -18,9 +11,6 @@ r	= 0.04
 T	= 1.0
 sigma	= 0.2
 q = 0.0
-
-# --- Define Score Functions  -------------------------------------------------
-
 
 
 def CallOptionValue(S, K, r, sigma, T, q):
@@ -33,8 +23,6 @@ def PutOptionValue(S, K, r, sigma, T, q):
 	d2 = d1 - sigma * m.sqrt(T)
 	return K * m.exp(-r*T) * norm.cdf(-d2) - S * m.exp(-q*T) *norm.cdf(-d1)
 
-
-# --- Main Function          --------------------------------------------------
 
 
 if Call_or_Put == "Call":
